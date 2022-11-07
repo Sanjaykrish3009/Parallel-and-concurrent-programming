@@ -1,0 +1,38 @@
+# algorithm
+
+constructor():
+	set number of threads
+	set sem_flags
+
+	get test cases
+	execute each operation
+
+Thread(id) : 
+	wait_for_semaphore_signal
+
+	if queue[id].has_operations() :
+		operation = queue[id].get_operation()
+		queue[id].pop
+		execute_operation(operation) on submap[id]
+
+		Thread(id) #recursive function call
+
+	else if sem_flag[id] == false:
+		return
+
+execute(key,value) :
+	id = get_hash_key(key)
+
+	if thread not created : 
+		create_thread()
+		assign thread to submap[id]
+	
+	queue[id].insert(mode,key,value)
+	signal_semaphore()
+
+destructor() :
+	for i in range(threads):
+		if thread[i].is_joinable()
+			sem_flag[i] = False
+			signal_semaphore()
+			thread[i].join()
